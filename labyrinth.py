@@ -1,3 +1,6 @@
+from robot import *
+from copy import deepcopy
+
 class Labyrinth:
 
     def __init__(self, content):
@@ -12,7 +15,7 @@ class Labyrinth:
             grid_line = []
             for y, case in enumerate(line):
                 if case == 'X':
-                    self.robot = (x, y)
+                    self.robot = Robot(x, y)
                 elif case == '.':
                     self.doors.append((x, y))
                 elif case == 'O':
@@ -38,7 +41,7 @@ class Labyrinth:
         if not number:
             number = 1
 
-        temp_robot = self.robot
+        temp_robot = deepcopy(self.robot)
 
         j = int(number)
         possible = True
@@ -50,13 +53,13 @@ class Labyrinth:
         if possible:
             """ si la position avant le move etait une porte, il faut redessiner une porte sinon un vide """
             character_to_draw = ' '
-            if (self.robot[0], self.robot[1]) in self.doors:
+            if (self.robot.x, self.robot.y) in self.doors:
                 character_to_draw = '.'
-            self.grid[self.robot[0]][self.robot[1]] = character_to_draw
+            self.grid[self.robot.x][self.robot.y] = character_to_draw
 
             """ mise a jour de la nouvelle position du robot et ajout du robot a la grille"""
             self.robot = temp_robot
-            self.grid[self.robot[0]][self.robot[1]] = 'X'
+            self.grid[self.robot.x][self.robot.y] = 'X'
 
         return possible, win
 
@@ -64,27 +67,21 @@ class Labyrinth:
 
         """ bouge si possible le robot suivant le choix de l'utilisateur """
 
-        robot_x = robot[0]
-        robot_y = robot[1]
-
         if letter == 'N':
-            robot = (robot_x - 1, robot_y)
+            robot.x = robot.x - 1
         elif letter == 'S':
-            robot = (robot_x + 1, robot_y)
+            robot.x = robot.x + 1
         elif letter == 'O':
-            robot = (robot_x, robot_y - 1)
+            robot.y = robot.y - 1
         elif letter == 'E':
-            robot = (robot_x, robot_y + 1)
-
-        robot_x = robot[0]
-        robot_y = robot[1]
+            robot.y = robot.y + 1
 
         """ si futur position est un mur """
-        if (robot_x, robot_y) in self.walls:
+        if (robot.x, robot.y) in self.walls:
             return False, False, robot
 
         """ si la nouvelle position du robot est la position de la sortie, on a gagné ! """
-        if robot in self.exits:
+        if (robot.x, robot.y) in self.exits:
             return True, True, robot
 
         """ position possible mais sans vistoire, on continue... """
