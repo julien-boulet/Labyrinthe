@@ -1,21 +1,36 @@
 import os
 import pickle
+from labyrinth import *
 
 
-def check_map_choice(file_map_length):
+def check_map_choice(map_files, MAP_DIRECTORY, MAP_EXTENSION):
+    file_map_length = len(map_files)
+
     user_input_s = input("Entrez un numéro de labyrinthe pour commencer à jouer : ")
     try:
         user_input_i = int(user_input_s)
     except ValueError:
         print("Merci de choisir un chiffre entre 1 et {0}".format(file_map_length))
-        return check_map_choice(file_map_length)
+        return check_map_choice(map_files, MAP_DIRECTORY, MAP_EXTENSION)
 
     if user_input_i < 1 or (user_input_i - 1) >= file_map_length:
         print("Merci de choisir un chiffre entre 1 et {0}".format(file_map_length))
-        return check_map_choice(file_map_length)
+        return check_map_choice(map_files, MAP_DIRECTORY, MAP_EXTENSION)
 
     print("Vous avez choisi la carte", user_input_i)
-    return user_input_i
+
+    with open(MAP_DIRECTORY + map_files[user_input_i - 1] + MAP_EXTENSION, 'r') as f:
+        labyrinth = Labyrinth(f.read())
+
+    if len(labyrinth.exits) < 1:
+        print("!!!!!!!!! carte invalide, il n'y a pas de sortie !!!!!!!!!!!!!!!")
+        return check_map_choice(map_files, MAP_DIRECTORY, MAP_EXTENSION)
+
+    if not labyrinth.robot:
+        print("!!!!!!!!! carte invalide, il n'y a pas de robot !!!!!!!!!!!!!!!")
+        return check_map_choice(map_files, MAP_DIRECTORY, MAP_EXTENSION)
+
+    return labyrinth
 
 
 def enter_input():

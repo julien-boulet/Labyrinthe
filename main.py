@@ -24,19 +24,7 @@ if not load_save:
     for i, fname in enumerate(map_files):
         print("{0} - {1}".format(i + 1, fname.rsplit('.', 1)[0]))
 
-    user_input_m = check_map_choice(len(map_files)) - 1
-
-    with open(MAP_DIRECTORY + map_files[user_input_m] + MAP_EXTENSION, 'r') as f:
-        content = f.read()
-        labyrinth = Labyrinth(content)
-
-    if len(labyrinth.exits) < 1:
-        print("!!!!!!!!! carte invalide, il n'y a pas de sortie !!!!!!!!!!!!!!!")
-        user_input_m = check_map_choice(len(map_files)) - 1
-
-    if not labyrinth.robot:
-        print("!!!!!!!!! carte invalide, il n'y a pas de robot !!!!!!!!!!!!!!!")
-        user_input_m = check_map_choice(len(map_files)) - 1
+    labyrinth = check_map_choice(map_files, MAP_DIRECTORY, MAP_EXTENSION)
 
 while True:
     print(labyrinth.draw_it())
