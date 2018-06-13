@@ -29,11 +29,14 @@ if not labyrinth.robot:
 
 while True:
     print(labyrinth.draw_it())
-    user_input_g = enter_input()
-    if user_input_g == 'Q':
+    user_input_c, user_input_n = enter_input()
+
+    if user_input_c == 'Q':
         print("Dommage de nous quitter :(")
         break
-    possible, win = labyrinth.move_robot(user_input_g)
+
+    possible, win = labyrinth.move_robot_number(user_input_c, user_input_n)
+
     if not possible:
         print("!!!!!!!!! mouvement impossible !!!!!!!!!!!!!!!")
     if win:

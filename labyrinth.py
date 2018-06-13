@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 class Labyrinth:
 
     def __init__(self, content):
@@ -32,6 +34,26 @@ class Labyrinth:
             for case in line:
                 print(case, end='', flush=True)
             print('\n', end='', flush=True)
+
+    def move_robot_number(self, letter, number):
+        if not number:
+            number = 1
+
+        copy_robot = deepcopy(self.robot)
+        copy_grid = deepcopy(self.grid)
+
+        j = int(number)
+        possible = True
+        win = False
+        while possible and not win and j > 0:
+            possible, win = self.move_robot(letter)
+            j = j-1
+
+        if not possible:
+            self.robot = deepcopy(copy_robot)
+            self.grid = deepcopy(copy_grid)
+
+        return possible, win
 
     def move_robot(self, letter):
 
