@@ -1,3 +1,7 @@
+import os
+import pickle
+
+
 def check_map_choice(file_map_length):
     user_input_s = input("Entrez un numéro de labyrinthe pour commencer à jouer : ")
     try:
@@ -35,3 +39,21 @@ def enter_input():
                 return enter_input()
 
     return user_input_s[0], user_input_s[1:]
+
+
+def save_labyrinth(labyrinth, save_directory):
+    with open(save_directory + "save", "wb") as save_file:
+        mon_pickler = pickle.Pickler(save_file)
+        mon_pickler.dump(labyrinth)
+        save_file.close()
+
+
+def load_labyrinth(save_directory):
+    if os.path.exists(save_directory + "save"):
+        with open(save_directory + "save", "rb") as save_file:
+            mon_depickler = pickle.Unpickler(save_file)
+            labyrinth = mon_depickler.load()
+            save_file.close()
+            return True, labyrinth
+
+    return False, None
