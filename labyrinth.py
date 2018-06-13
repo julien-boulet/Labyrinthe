@@ -69,14 +69,7 @@ class Labyrinth:
 
         """ bouge si possible le robot suivant le choix de l'utilisateur """
 
-        if letter == 'N':
-            robot.x = robot.x - 1
-        elif letter == 'S':
-            robot.x = robot.x + 1
-        elif letter == 'O':
-            robot.y = robot.y - 1
-        elif letter == 'E':
-            robot.y = robot.y + 1
+        robot.move(letter)
 
         """ si futur position est un mur """
         if (robot.x, robot.y) in self.walls:
