@@ -1,5 +1,3 @@
-import os
-from labyrinth import *
 from functions import *
 
 MAP_DIRECTORY = "./maps/"
