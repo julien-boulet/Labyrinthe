@@ -1,6 +1,7 @@
 from robot import *
 from copy import deepcopy
 
+
 class Labyrinth:
 
     def __init__(self, content):
@@ -41,7 +42,8 @@ class Labyrinth:
         if not number:
             number = 1
 
-        temp_robot = deepcopy(self.robot)
+        """temp_robot = deepcopy(self.robot)"""
+        temp_robot = Robot(self.robot.x, self.robot.y)
 
         j = int(number)
         possible = True
