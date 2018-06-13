@@ -1,11 +1,28 @@
 class Labyrinth:
 
-    def __init__(self, robot, exit, walls, doors, grid):
-        self.robot = robot
-        self.exit = exit
-        self.walls = walls
-        self.doors = doors
-        self.grid = grid
+    def __init__(self, content):
+        """ construit un labyrinth à partir du contenu du fichier text """
+        self.walls = []
+        self.doors = []
+        self.grid = []
+        self.exits = []
+        self.robot = None
+
+        for x, line in enumerate(content.split("\n")):
+            grid_line = []
+            for y, case in enumerate(line):
+                if case == 'X':
+                    self.robot = (x, y)
+                elif case == '.':
+                    self.doors.append((x, y))
+                elif case == 'O':
+                    self.walls.append((x, y))
+                elif case == 'U':
+                    self.exits.append((x, y))
+
+                grid_line.append(case)
+
+            self.grid.append(grid_line)
 
     def draw_it(self):
 
@@ -50,32 +67,8 @@ class Labyrinth:
         self.grid[self.robot[0]][self.robot[1]] = 'X'
 
         """ si la nouvelle position du robot est la position de la sortie, on a gagné ! """
-        if self.robot == self.exit:
+        if self.robot in self.exits:
             return True, True
 
         """ position possible mais sans vistoire, on continue... """
         return True, False
-
-    def read_content(content):
-
-        """ construit un labyrinth à partir du contenu du fichier text """
-
-        walls = []
-        doors = []
-        grid = []
-
-        for x, line in enumerate(content.split("\n")):
-            grid_line = []
-            for y, case in enumerate(line):
-                if case == 'X':
-                    robot = (x, y)
-                elif case == '.':
-                    doors.append((x, y))
-                elif case == 'O':
-                    walls.append((x, y))
-                elif case == 'U':
-                    exit = (x, y)
-                grid_line.append(case)
-            grid.append(grid_line)
-
-        return Labyrinth(robot, exit, walls, doors, grid)

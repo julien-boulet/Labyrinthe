@@ -17,11 +17,18 @@ user_input_m = check_map_choice(len(fileList)) - 1
 
 with open(MAP_DIRECTORY + fileList[user_input_m] + MAP_EXTENSION, 'r') as f:
     content = f.read()
-    labyrinth = Labyrinth.read_content(content)
+    labyrinth = Labyrinth(content)
 
-print(labyrinth.draw_it())
+if len(labyrinth.exits) < 1:
+    print("!!!!!!!!! carte invalide, il n'y a pas de sortie !!!!!!!!!!!!!!!")
+    user_input_m = check_map_choice(len(fileList)) - 1
+
+if not labyrinth.robot:
+    print("!!!!!!!!! carte invalide, il n'y a pas de robot !!!!!!!!!!!!!!!")
+    user_input_m = check_map_choice(len(fileList)) - 1
 
 while True:
+    print(labyrinth.draw_it())
     user_input_g = enter_input()
     possible, win = labyrinth.move_robot(user_input_g)
     if not possible:
@@ -29,4 +36,3 @@ while True:
     if win:
         print("######### Vous avez gagné ####################")
         break
-    print(labyrinth.draw_it())
