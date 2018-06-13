@@ -34,23 +34,23 @@ def check_map_choice(map_files, map_directory, map_extension):
 
 
 def enter_input():
-    acceptabled_input = ['N', 'S', 'E', 'O', 'Q']
+    accepted_input = ['N', 'S', 'E', 'O', 'Q']
 
-    user_input_s = input("Entrez une action {0} + un nombre facultatif: ".format(acceptabled_input)).upper()
+    user_input_s = input("Entrez une action {0} + un nombre facultatif: ".format(accepted_input)).upper()
     if len(user_input_s) < 1:
-        print("Merci de choisir une lettre entre {0}".format(acceptabled_input))
+        print("Merci de choisir une lettre entre {0}".format(accepted_input))
         return enter_input()
     for i, char in enumerate(user_input_s):
         if i == 0:
             if not char.isalpha():
-                print("Merci de choisir une lettre entre {0}".format(acceptabled_input))
+                print("Merci de choisir une lettre entre {0}".format(accepted_input))
                 return enter_input()
-            elif not char in acceptabled_input:
-                print("Merci de choisir une lettre parmi {0}".format(acceptabled_input))
+            elif not char in accepted_input:
+                print("Merci de choisir une lettre parmi {0}".format(accepted_input))
                 return enter_input()
         else:
             if not char.isdigit():
-                print("Merci de choisir une lettre parmi {0} puis un nombre facultatif".format(acceptabled_input))
+                print("Merci de choisir une lettre parmi {0} puis un nombre facultatif".format(accepted_input))
                 return enter_input()
 
     return user_input_s[0], user_input_s[1:]
