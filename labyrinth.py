@@ -49,7 +49,7 @@ class Labyrinth:
         possible = True
         win = False
         while possible and not win and j > 0:
-            possible, win, temp_robot = self.move_robot(letter, temp_robot)
+            possible, win = self.move_robot(letter, temp_robot)
             j = j - 1
 
         if possible:
@@ -73,11 +73,11 @@ class Labyrinth:
 
         """ si futur position est un mur """
         if (robot.x, robot.y) in self.walls:
-            return False, False, robot
+            return False, False
 
         """ si la nouvelle position du robot est la position de la sortie, on a gagné ! """
         if (robot.x, robot.y) in self.exits:
-            return True, True, robot
+            return True, True
 
         """ position possible mais sans vistoire, on continue... """
-        return True, False, robot
+        return True, False
