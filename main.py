@@ -30,6 +30,9 @@ if not labyrinth.robot:
 while True:
     print(labyrinth.draw_it())
     user_input_g = enter_input()
+    if user_input_g == 'Q':
+        print("Dommage de nous quitter :(")
+        break
     possible, win = labyrinth.move_robot(user_input_g)
     if not possible:
         print("!!!!!!!!! mouvement impossible !!!!!!!!!!!!!!!")

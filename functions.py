@@ -15,20 +15,22 @@ def check_map_choice(file_map_length):
 
 
 def enter_input():
-    acceptabled_input = ['N', 'S', 'E', 'O']
+    acceptabled_input = ['N', 'S', 'E', 'O', 'Q']
 
-    user_input_s = input("Entrez une action [N,S,E,O] : ").upper()
+    print(acceptabled_input)
+
+    user_input_s = input("Entrez une action {0} : ".format(acceptabled_input)).upper()
     if len(user_input_s) < 1:
-        print("Merci de choisir une lettre entre [N,S,E,O]")
+        print("Merci de choisir une lettre entre {0}".format(acceptabled_input))
         return enter_input()
     elif len(user_input_s) > 1:
-        print("Merci de choisir qu'une seule lettre entre [N,S,E,O]")
+        print("Merci de choisir qu'une seule lettre entre {0}".format(acceptabled_input))
         return enter_input()
     elif not user_input_s[0].isalpha():
-        print("Merci de choisir une lettre entre [N,S,E,O]")
+        print("Merci de choisir une lettre entre {0}".format(acceptabled_input))
         return enter_input()
     elif not user_input_s[0] in acceptabled_input:
-        print("Merci de choisir une lettre parmi [N,S,E,O]")
+        print("Merci de choisir une lettre parmi {0}".format(acceptabled_input))
         return enter_input()
 
     return user_input_s
