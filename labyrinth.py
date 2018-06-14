@@ -81,3 +81,45 @@ class Labyrinth:
 
         """ position possible mais sans vistoire, on continue... """
         return True, False
+
+    def drill_wall(self, letter_direction):
+        x = self.robot.x
+        y = self.robot.y
+
+        if letter_direction == 'N':
+            x = x - 1
+        elif letter_direction == 'S':
+            x = x + 1
+        elif letter_direction == 'O':
+            y = y - 1
+        elif letter_direction == 'E':
+            y = y + 1
+
+        if (x, y) in self.walls:
+            self.walls.remove((x, y))
+            self.doors.append((x, y))
+            self.grid[x][y] = '.'
+            return True
+        else:
+            return False
+
+    def build_wall(self, letter_direction):
+        x = self.robot.x
+        y = self.robot.y
+
+        if letter_direction == 'N':
+            x = x - 1
+        elif letter_direction == 'S':
+            x = x + 1
+        elif letter_direction == 'O':
+            y = y - 1
+        elif letter_direction == 'E':
+            y = y + 1
+
+        if (x,y) in self.doors:
+            self.walls.append((x, y))
+            self.doors.remove((x, y))
+            self.grid[x][y] = 'O'
+            return True
+        else:
+            return False

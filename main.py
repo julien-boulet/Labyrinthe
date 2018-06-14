@@ -32,8 +32,14 @@ while True:
         save_labyrinth(labyrinth, SAVE_DIRECTORY)
         print("Dommage de nous quitter :(")
         break
-
-    possible, win = labyrinth.move_robot_number(user_input_c, user_input_n)
+    if user_input_c == 'D':
+        win = False
+        possible = labyrinth.drill_wall(user_input_n)
+    elif user_input_c == 'B':
+        win = False
+        possible = labyrinth.build_wall(user_input_n)
+    else:
+        possible, win = labyrinth.move_robot_number(user_input_c, user_input_n)
 
     if not possible:
         print("!!!!!!!!! mouvement impossible !!!!!!!!!!!!!!!")
