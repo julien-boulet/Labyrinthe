@@ -83,17 +83,7 @@ class Labyrinth:
         return True, False
 
     def drill_wall(self, letter_direction):
-        x = self.robot.x
-        y = self.robot.y
-
-        if letter_direction == 'N':
-            x = x - 1
-        elif letter_direction == 'S':
-            x = x + 1
-        elif letter_direction == 'O':
-            y = y - 1
-        elif letter_direction == 'E':
-            y = y + 1
+        (x, y) = Labyrinth.find_position(self.robot.x, self.robot.y, letter_direction)
 
         if (x, y) in self.walls:
             self.walls.remove((x, y))
@@ -104,22 +94,21 @@ class Labyrinth:
             return False
 
     def build_wall(self, letter_direction):
-        x = self.robot.x
-        y = self.robot.y
+        (x, y) = Labyrinth.find_position(self.robot.x, self.robot.y, letter_direction)
 
-        if letter_direction == 'N':
-            x = x - 1
-        elif letter_direction == 'S':
-            x = x + 1
-        elif letter_direction == 'O':
-            y = y - 1
-        elif letter_direction == 'E':
-            y = y + 1
-
-        if (x,y) in self.doors:
+        if (x, y) in self.doors:
             self.walls.append((x, y))
             self.doors.remove((x, y))
             self.grid[x][y] = 'O'
             return True
         else:
             return False
+
+    @staticmethod
+    def find_position(x, y, letter):
+        return {
+            'N': (x - 1, y),
+            'S': (x + 1, y),
+            'O': (x, y - 1),
+            'E': (x, y + 1)
+        }.get(letter, (x, y))

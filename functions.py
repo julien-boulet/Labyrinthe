@@ -47,17 +47,18 @@ def enter_input():
             if not char.isalpha():
                 print("Merci de choisir une lettre entre {0}".format(accepted_input))
                 return enter_input()
-            elif not char in accepted_input:
+            elif char not in accepted_input:
                 print("Merci de choisir une lettre parmi {0}".format(accepted_input))
                 return enter_input()
         else:
             if user_input_s[0] in accepted_action and len(user_input_s[1:]) > 1:
                 print("Merci de choisir une direction {0} apres {1}".format(accepted_direction, accepted_action))
                 return enter_input()
-            elif user_input_s[0] in accepted_action and len(user_input_s[1:]) == 1 and not user_input_s[1] in accepted_direction:
+            elif user_input_s[0] in accepted_action and len(user_input_s[1:]) == 1 and not user_input_s[
+                                                                                               1] in accepted_direction:
                 print("Merci de choisir une direction {0} apres {1}".format(accepted_direction, accepted_action))
                 return enter_input()
-            elif not user_input_s[0] in accepted_action and not char.isdigit():
+            elif user_input_s[0] not in accepted_action and not char.isdigit():
                 print("Merci de choisir une lettre parmi {0} puis un nombre facultatif".format(accepted_input))
                 return enter_input()
 
@@ -66,17 +67,13 @@ def enter_input():
 
 def save_labyrinth(labyrinth, save_directory):
     with open(save_directory + "save", "wb") as save_file:
-        mon_pickler = pickle.Pickler(save_file)
-        mon_pickler.dump(labyrinth)
-        save_file.close()
+        pickle.Pickler(save_file).dump(labyrinth)
 
 
 def load_labyrinth(save_directory):
     if os.path.exists(save_directory + "save"):
         with open(save_directory + "save", "rb") as save_file:
-            mon_depickler = pickle.Unpickler(save_file)
-            labyrinth = mon_depickler.load()
-            save_file.close()
+            labyrinth = pickle.Unpickler(save_file).load()
             return True, labyrinth
 
     return False, None
