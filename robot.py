@@ -8,11 +8,11 @@ class Robot:
         self.y = y
 
     def move(self, letter):
-        if letter == Ordinal.NORTH.get_value():
+        if letter == Ordinal.NORTH.value:
             self.x = self.x - 1
-        elif letter == Ordinal.SOUTH.get_value():
+        elif letter == Ordinal.SOUTH.value:
             self.x = self.x + 1
-        elif letter == Ordinal.WEST.get_value():
+        elif letter == Ordinal.WEST.value:
             self.y = self.y - 1
-        elif letter == Ordinal.EAST.get_value():
+        elif letter == Ordinal.EAST.value:
             self.y = self.y + 1

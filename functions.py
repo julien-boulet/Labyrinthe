@@ -36,7 +36,7 @@ def check_map_choice(map_files, map_directory, map_extension):
 
 def enter_input():
     accepted_action = ['D', 'B']
-    accepted_ordinal = [Ordinal.NORTH.get_value(), Ordinal.SOUTH.get_value(), Ordinal.EAST.get_value(), Ordinal.WEST.get_value()]
+    accepted_ordinal = [member.value for name, member in Ordinal.__members__.items()]
     accepted_input = accepted_ordinal + accepted_action + ['Q']
 
     user_input_s = input("Entrez une action {0} + un nombre facultatif: ".format(accepted_input)).upper()

@@ -1,7 +1,8 @@
-from enums.baseEnum import BaseEnum
+from enum import Enum, unique
 
 
-class Element(BaseEnum):
+@unique
+class Element(Enum):
     WALL = 'O'
     DOOR = '.'
     EXIT = 'U'

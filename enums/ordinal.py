@@ -1,7 +1,8 @@
-from enums.baseEnum import BaseEnum
+from enum import Enum, unique
 
 
-class Ordinal(BaseEnum):
+@unique
+class Ordinal(Enum):
     NORTH = 'N'
     SOUTH = 'S'
     EAST = 'E'
