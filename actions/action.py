@@ -18,6 +18,8 @@ class Action:
 
 class Build(Action):
 
+    letter = 'B'
+
     @staticmethod
     def update(x, y, labyrinth):
         labyrinth.walls.append((x, y))
@@ -26,6 +28,8 @@ class Build(Action):
 
 
 class Drill(Action):
+
+    letter = 'D'
 
     @staticmethod
     def update(x, y, labyrinth):
