@@ -1,4 +1,4 @@
-from functions import *
+from functions import check_map_choice, enter_input, save_labyrinth, load_labyrinth
 
 MAP_DIRECTORY = "./maps/"
 MAP_EXTENSION = ".txt"

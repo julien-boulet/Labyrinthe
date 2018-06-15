@@ -1,4 +1,4 @@
-from robot import *
+from robot import Robot
 from enums.element import Element
 from actions.action import Drill, Build
 

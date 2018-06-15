@@ -1,6 +1,7 @@
 import os
 import pickle
-from labyrinth import *
+from labyrinth import Labyrinth
+from actions.action import Drill, Build
 from enums.ordinal import Ordinal
 
 
