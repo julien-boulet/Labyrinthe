@@ -1,3 +1,6 @@
+from enums.ordinal import Ordinal
+
+
 class Robot:
 
     def __init__(self, x, y):
@@ -5,11 +8,11 @@ class Robot:
         self.y = y
 
     def move(self, letter):
-        if letter == 'N':
+        if letter == Ordinal.NORTH.get_value():
             self.x = self.x - 1
-        elif letter == 'S':
+        elif letter == Ordinal.SOUTH.get_value():
             self.x = self.x + 1
-        elif letter == 'O':
+        elif letter == Ordinal.WEST.get_value():
             self.y = self.y - 1
-        elif letter == 'E':
+        elif letter == Ordinal.EAST.get_value():
             self.y = self.y + 1

@@ -1,6 +1,7 @@
 import os
 import pickle
 from labyrinth import *
+from enums.ordinal import Ordinal
 
 
 def check_map_choice(map_files, map_directory, map_extension):
@@ -35,8 +36,8 @@ def check_map_choice(map_files, map_directory, map_extension):
 
 def enter_input():
     accepted_action = ['D', 'B']
-    accepted_direction = ['N', 'S', 'E', 'O']
-    accepted_input = ['N', 'S', 'E', 'O', 'Q', 'D', 'B']
+    accepted_ordinal = [Ordinal.NORTH.get_value(), Ordinal.SOUTH.get_value(), Ordinal.EAST.get_value(), Ordinal.WEST.get_value()]
+    accepted_input = accepted_ordinal + accepted_action + ['Q']
 
     user_input_s = input("Entrez une action {0} + un nombre facultatif: ".format(accepted_input)).upper()
     if len(user_input_s) < 1:
@@ -52,11 +53,11 @@ def enter_input():
                 return enter_input()
         else:
             if user_input_s[0] in accepted_action and len(user_input_s[1:]) > 1:
-                print("Merci de choisir une direction {0} apres {1}".format(accepted_direction, accepted_action))
+                print("Merci de choisir une direction {0} apres {1}".format(accepted_ordinal, accepted_action))
                 return enter_input()
             elif user_input_s[0] in accepted_action and len(user_input_s[1:]) == 1 and not user_input_s[
-                                                                                               1] in accepted_direction:
-                print("Merci de choisir une direction {0} apres {1}".format(accepted_direction, accepted_action))
+                                                                                               1] in accepted_ordinal:
+                print("Merci de choisir une direction {0} apres {1}".format(accepted_ordinal, accepted_action))
                 return enter_input()
             elif user_input_s[0] not in accepted_action and not char.isdigit():
                 print("Merci de choisir une lettre parmi {0} puis un nombre facultatif".format(accepted_input))
