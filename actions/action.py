@@ -3,6 +3,8 @@ from enums.element import Element
 
 class Action:
 
+    """ un peu tiré par les cheveux mais c'etait pour tester l'heritage"""
+
     def __init__(self, element):
         self.element = element
 

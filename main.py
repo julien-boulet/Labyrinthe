@@ -1,4 +1,7 @@
+import os
 from functions import check_map_choice, enter_input, save_labyrinth, load_labyrinth
+from actions.action import Drill,Build
+from enums.ordinal import Ordinal
 
 MAP_DIRECTORY = "./maps/"
 MAP_EXTENSION = ".txt"
