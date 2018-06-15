@@ -26,23 +26,23 @@ if not load_save:
 
 while True:
     print(labyrinth.draw_it())
-    user_input_c, user_input_n = enter_input()
+    user_input_1, user_input_2 = enter_input()
 
-    if user_input_c == 'Q':
+    if user_input_1 == 'Q':
         save_labyrinth(labyrinth, SAVE_DIRECTORY)
         print("Dommage de nous quitter :(")
         break
-    if user_input_c == 'D':
+    if user_input_1 == Drill.letter:
         win = False
-        enum_ordinal = Ordinal.find_by_letter(user_input_n)
+        enum_ordinal = Ordinal.find_by_letter(user_input_2)
         possible = labyrinth.drill_wall(enum_ordinal)
-    elif user_input_c == 'B':
+    elif user_input_1 == Build.letter:
         win = False
-        enum_ordinal = Ordinal.find_by_letter(user_input_n)
+        enum_ordinal = Ordinal.find_by_letter(user_input_2)
         possible = labyrinth.build_wall(enum_ordinal)
     else:
-        enum_ordinal = Ordinal.find_by_letter(user_input_c)
-        possible, win = labyrinth.move_robot_number(enum_ordinal, user_input_n)
+        enum_ordinal = Ordinal.find_by_letter(user_input_1)
+        possible, win = labyrinth.move_robot_number(enum_ordinal, user_input_2)
 
     if not possible:
         print("!!!!!!!!! mouvement impossible !!!!!!!!!!!!!!!")

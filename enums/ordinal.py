@@ -13,7 +13,6 @@ class Ordinal(Enum):
         self.x = x
         self.y = y
 
-
     @staticmethod
     def find_by_letter(letter):
         return {
@@ -22,11 +21,3 @@ class Ordinal(Enum):
             Ordinal.WEST.letter: Ordinal.WEST,
             Ordinal.EAST.letter: Ordinal.EAST
         }.get(letter)
-
-    def find_position(x, y, letter):
-        return {
-            Ordinal.NORTH.value: (x - 1, y),
-            Ordinal.SOUTH.value: (x + 1, y),
-            Ordinal.WEST.value: (x, y - 1),
-            Ordinal.EAST.value: (x, y + 1)
-        }.get(letter, (x, y))

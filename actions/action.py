@@ -17,7 +17,6 @@ class Action:
 
 
 class Build(Action):
-
     letter = 'B'
 
     @staticmethod
@@ -28,7 +27,6 @@ class Build(Action):
 
 
 class Drill(Action):
-
     letter = 'D'
 
     @staticmethod
