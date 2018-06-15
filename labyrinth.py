@@ -85,7 +85,7 @@ class Labyrinth:
         return True, False
 
     def drill_wall(self, letter_direction):
-        (x, y) = Labyrinth.find_position(self.robot.x, self.robot.y, letter_direction)
+        (x, y) = Ordinal.find_position(self.robot.x, self.robot.y, letter_direction)
 
         if (x, y) in self.walls:
             self.walls.remove((x, y))
@@ -96,7 +96,7 @@ class Labyrinth:
             return False
 
     def build_wall(self, letter_direction):
-        (x, y) = Labyrinth.find_position(self.robot.x, self.robot.y, letter_direction)
+        (x, y) = Ordinal.find_position(self.robot.x, self.robot.y, letter_direction)
 
         if (x, y) in self.doors:
             self.walls.append((x, y))
@@ -106,11 +106,4 @@ class Labyrinth:
         else:
             return False
 
-    @staticmethod
-    def find_position(x, y, letter):
-        return {
-            Ordinal.NORTH.value: (x - 1, y),
-            Ordinal.SOUTH.value: (x + 1, y),
-            Ordinal.WEST.value: (x, y - 1),
-            Ordinal.EAST.value: (x, y + 1)
-        }.get(letter, (x, y))
+
