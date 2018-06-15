@@ -34,12 +34,15 @@ while True:
         break
     if user_input_c == 'D':
         win = False
-        possible = labyrinth.drill_wall(user_input_n)
+        enum_ordinal = Ordinal.find_by_letter(user_input_n)
+        possible = labyrinth.drill_wall(enum_ordinal)
     elif user_input_c == 'B':
         win = False
-        possible = labyrinth.build_wall(user_input_n)
+        enum_ordinal = Ordinal.find_by_letter(user_input_n)
+        possible = labyrinth.build_wall(enum_ordinal)
     else:
-        possible, win = labyrinth.move_robot_number(user_input_c, user_input_n)
+        enum_ordinal = Ordinal.find_by_letter(user_input_c)
+        possible, win = labyrinth.move_robot_number(enum_ordinal, user_input_n)
 
     if not possible:
         print("!!!!!!!!! mouvement impossible !!!!!!!!!!!!!!!")

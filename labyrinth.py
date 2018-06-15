@@ -1,7 +1,5 @@
 from robot import *
 from enums.element import Element
-from enums.ordinal import Ordinal
-from copy import deepcopy
 
 
 class Labyrinth:
@@ -39,7 +37,7 @@ class Labyrinth:
                 print(case, end='', flush=True)
             print('\n', end='', flush=True)
 
-    def move_robot_number(self, letter, number):
+    def move_robot_number(self, enum_ordinal, number):
 
         if not number:
             number = 1
@@ -51,7 +49,7 @@ class Labyrinth:
         possible = True
         win = False
         while possible and not win and j > 0:
-            possible, win = self.move_robot(letter, temp_robot)
+            possible, win = self.move_robot(enum_ordinal, temp_robot)
             j = j - 1
 
         if possible:
@@ -67,11 +65,11 @@ class Labyrinth:
 
         return possible, win
 
-    def move_robot(self, letter, robot):
+    def move_robot(self, enum_ordinal, robot):
 
         """ bouge si possible le robot suivant le choix de l'utilisateur """
 
-        robot.move(letter)
+        robot.move(enum_ordinal)
 
         """ si futur position est un mur """
         if (robot.x, robot.y) in self.walls:
@@ -84,8 +82,8 @@ class Labyrinth:
         """ position possible mais sans vistoire, on continue... """
         return True, False
 
-    def drill_wall(self, letter_direction):
-        (x, y) = Ordinal.find_position(self.robot.x, self.robot.y, letter_direction)
+    def drill_wall(self, enum_ordinal):
+        (x, y) = (self.robot.x + enum_ordinal.x, self.robot.y + enum_ordinal.y)
 
         if (x, y) in self.walls:
             self.walls.remove((x, y))
@@ -95,8 +93,8 @@ class Labyrinth:
         else:
             return False
 
-    def build_wall(self, letter_direction):
-        (x, y) = Ordinal.find_position(self.robot.x, self.robot.y, letter_direction)
+    def build_wall(self, enum_ordinal):
+        (x, y) = (self.robot.x + enum_ordinal.x, self.robot.y + enum_ordinal.y)
 
         if (x, y) in self.doors:
             self.walls.append((x, y))
@@ -105,5 +103,3 @@ class Labyrinth:
             return True
         else:
             return False
-
-
