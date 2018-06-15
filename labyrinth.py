@@ -1,5 +1,6 @@
 from robot import *
 from enums.element import Element
+from actions.action import Drill, Build
 
 
 class Labyrinth:
@@ -71,7 +72,7 @@ class Labyrinth:
 
         robot.move(enum_ordinal)
 
-        """ si futur position est un mur """
+        """ si futur position est un mur, pas possible et pas gagné"""
         if (robot.x, robot.y) in self.walls:
             return False, False
 
@@ -79,27 +80,11 @@ class Labyrinth:
         if (robot.x, robot.y) in self.exits:
             return True, True
 
-        """ position possible mais sans vistoire, on continue... """
+        """ position possible mais sans victoire, on continue... """
         return True, False
 
     def drill_wall(self, enum_ordinal):
-        (x, y) = (self.robot.x + enum_ordinal.x, self.robot.y + enum_ordinal.y)
-
-        if (x, y) in self.walls:
-            self.walls.remove((x, y))
-            self.doors.append((x, y))
-            self.grid[x][y] = Element.DOOR.value
-            return True
-        else:
-            return False
+        return Drill(self.walls).action(enum_ordinal, self)
 
     def build_wall(self, enum_ordinal):
-        (x, y) = (self.robot.x + enum_ordinal.x, self.robot.y + enum_ordinal.y)
-
-        if (x, y) in self.doors:
-            self.walls.append((x, y))
-            self.doors.remove((x, y))
-            self.grid[x][y] = Element.WALL.value
-            return True
-        else:
-            return False
+        return Build(self.doors).action(enum_ordinal, self)

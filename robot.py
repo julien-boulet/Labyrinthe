@@ -5,4 +5,5 @@ class Robot:
         self.y = y
 
     def move(self, enum_ordinal):
-        self.x, self.y = (self.x + enum_ordinal.x, self.y + enum_ordinal.y)
+        self.x = self.x + enum_ordinal.x
+        self.y = self.y + enum_ordinal.y
