@@ -1,5 +1,7 @@
 class Robot:
 
+    """ j'aurai pu utiliser un tuple a la place de cette classe"""
+
     def __init__(self, x, y):
         self.x = x
         self.y = y
