@@ -1,3 +1,9 @@
 .gitignore
 .idea/*
 save/*
+enums/__pycache__/ordinal.cpython-36.pyc
+__pycache__/functions.cpython-36.pyc
+__pycache__/labyrinth.cpython-36.pyc
+__pycache__/robot.cpython-36.pyc
+actions/__pycache__/action.cpython-36.pyc
+enums/__pycache__/element.cpython-36.pyc
