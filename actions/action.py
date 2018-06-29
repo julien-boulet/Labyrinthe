@@ -17,6 +17,10 @@ class Action:
         else:
             return False
 
+    @staticmethod
+    def update(x,y,labyrinth):
+        print("update action")
+
 
 class Build(Action):
     letter = 'B'

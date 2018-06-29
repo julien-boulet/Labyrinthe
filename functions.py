@@ -39,9 +39,10 @@ def enter_input():
     accepted_action = [Drill.letter, Build.letter]
     accepted_ordinal = [member.letter for name, member in Ordinal.__members__.items()]
     accepted_input = accepted_ordinal + accepted_action
-
+    accepted_input.append('Q')
+    
     user_input_s = input(
-        "Entrez une action {0} + un nombre facultatif ou {1} + {0}".format(accepted_ordinal, accepted_action)).upper()
+        "Entrez une action {0} + un nombre facultatif ou {1} + {0} ou quitter avec 'Q' : ".format(accepted_ordinal, accepted_action)).upper()
     if len(user_input_s) < 1:
         print("Merci de choisir une lettre entre {0}".format(accepted_input))
         return enter_input()
