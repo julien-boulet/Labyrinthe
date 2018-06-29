@@ -40,6 +40,7 @@ class Labyrinth:
 
     def move_robot_number(self, enum_ordinal, number):
 
+
         if not number:
             number = 1
 
