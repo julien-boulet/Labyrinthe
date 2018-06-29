@@ -1,5 +1,6 @@
 .gitignore
 .idea/*
+.vscode/*
 save/*
 enums/__pycache__/ordinal.cpython-36.pyc
 __pycache__/functions.cpython-36.pyc
